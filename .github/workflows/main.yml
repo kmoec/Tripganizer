@@ -13,6 +13,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.15.1
+      - name: Test Env
+        run: |
+           echo 'The GitHub Action Secret will be masked:  '
+           echo ${{ secrets.GITHUB_TOKEN }}
+           echo 'Testing secret if its masked: '
+           printenv
       - name: Setup Expo
         uses: expo/expo-github-action@v7
         with:
