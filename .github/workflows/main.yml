@@ -25,6 +25,17 @@ jobs:
           packager: npm
           token: ${{ secrets.EXPO_TOKEN }}
           expo-cache: true
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-     
       - name: Install Packages
         run: npm install
      # Peform a type check if you are using typescript
