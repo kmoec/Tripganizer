@@ -1,0 +1,41 @@
+name: Deploy Branch 
+
+on: [pull_request, push]
+
+jobs:
+  test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup reppos 
+        uses: actions/checkout@v3
+      - name: Setup Node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.1
+      - name: Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          packager: npm
+          token: ${{ secrets.EXPO_TOKEN }}
+          expo-cache: true
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install Packages
+        run: npm install
+     # Peform a type check if you are using typescript
+      - name: Typecheck
+        run: npx --no-install tsc --noEmit
+      - name: Check Lint
+        run: npm run lint
+      - name: Test
+        run: npm run test -- --coverage
