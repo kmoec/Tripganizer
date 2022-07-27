@@ -16,7 +16,7 @@ jobs:
       - name: Test Env
         run: |
            echo 'The GitHub Action Secret will be masked:  '
-           echo ${{ secrets.GITHUB_TOKEN }}
+           echo ${{ secrets.EXPO_TOKEN }}
            echo 'Testing secret if its masked: '
       - name: Setup Expo
         uses: expo/expo-github-action@v7
