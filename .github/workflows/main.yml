@@ -18,7 +18,6 @@ jobs:
            echo 'The GitHub Action Secret will be masked:  '
            echo ${{ secrets.GITHUB_TOKEN }}
            echo 'Testing secret if its masked: '
-           printenv
       - name: Setup Expo
         uses: expo/expo-github-action@v7
         with:
