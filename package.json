@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "./node_modules/eslint/bin/eslint.js"
+    "lint": "eslint"
   },
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
