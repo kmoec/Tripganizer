@@ -30,6 +30,6 @@ jobs:
       - name: Typecheck
         run: npx --yes -p typescript --noEmit
       - name: Check Lint
-        run: npm run lint
+        run: eslint . --ext .js,.jsx,.ts,.tsx
       - name: Test
         run: npm run test -- --coverage
