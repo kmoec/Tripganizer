@@ -30,6 +30,8 @@ jobs:
       - name: Typecheck
         run: npx --yes -p typescript --noEmit
       - name: Run ESLint
-        uses: eslint/github-action@v0
+        uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: src/
       - name: Test
         run: npm run test -- --coverage
