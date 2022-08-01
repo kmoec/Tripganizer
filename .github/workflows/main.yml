@@ -29,9 +29,7 @@ jobs:
      # Peform a type check if you are using typescript
       - name: Typecheck
         run: npx --yes -p typescript --noEmit
-      - name: Setup ESLint config
-        run : npm init @eslint/config
       - name: Run ESLint
-        run: npm run lint
+        run:  npx eslint --max-warnings 0 $(git diff origin/master...HEAD --name-only --relative --diff-filter=MATR '***.js' '***.jsx' '***.ts' '***.tsx' | xargs)
       - name: Test
         run: npm run test -- --coverage
