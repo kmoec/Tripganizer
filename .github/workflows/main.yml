@@ -32,8 +32,6 @@ jobs:
       - name: create tmp dir
         run: mkdir ~/tmp/
       - name: get file list
-        run: git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} --name-only --relative '*.js' > ~/tmp/filelist
+        run: git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} --name-only --relative '*.js *.ts' > ~/tmp/filelist
       - name: run lint
         run: npx eslint $(cat ~/tmp/filelist)
-      - name: Test
-        run: npm run test -- --coverage
