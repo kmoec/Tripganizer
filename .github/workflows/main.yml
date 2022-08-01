@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup reppos 
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
       - name: Setup Node 
         uses: actions/setup-node@v3
         with:
@@ -29,7 +29,11 @@ jobs:
      # Peform a type check if you are using typescript
       - name: Typecheck
         run: npx --yes -p typescript --noEmit
-      - name: Run ESLint
-        run:  npx eslint --max-warnings 0 $(git diff origin/master...HEAD --name-only --relative --diff-filter=MATR '***.js' '***.jsx' '***.ts' '***.tsx' | xargs)
+      - name: create tmp dir
+        run: mkdir ~/tmp/
+      - name: get file list
+        run: git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} --name-only --relative '*.js' > ~/tmp/filelist
+      - name: run lint
+        run: npx eslint $(cat ~/tmp/filelist)
       - name: Test
         run: npm run test -- --coverage
