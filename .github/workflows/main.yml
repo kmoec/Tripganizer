@@ -1,0 +1,37 @@
+name: Deploy Branch 
+
+on: [pull_request, push]
+
+jobs:
+  test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup reppos 
+        uses: actions/checkout@v1
+      - name: Setup Node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.1
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-     
+      - name: Install Packages
+        run: npm install
+     # Peform a type check if you are using typescript
+      - name: Typecheck
+        run: npx --yes -p typescript --noEmit
+      - name: create tmp dir
+        run: mkdir ~/tmp/
+      - name: get file list
+        run: git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} --name-only --relative '*.js *.ts' > ~/tmp/filelist
+      - name: run lint
+        run: npx eslint $(cat ~/tmp/filelist)
