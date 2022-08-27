@@ -1,0 +1,24 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "getter-return": 1,
+      "constructor-super": 2,
+      "no-duplicate-case": 2,
+      "no-duplicate-imports": 1,
+      "no-invalid-regexp": 2,
+      "no-self-assign": 2,
+      "no-self-compare": 2,
+      "no-setter-return": 2,
+      "no-this-before-super": 2,
+      "no-unreachable": 2
+    }
+}
