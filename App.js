@@ -1,21 +1,20 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import Registration from './src/pages/registration/Registration'
+import { Provider as PaperProvider } from 'react-native-paper'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
 import React from 'react'
 
 export default function App () {
+  const Stack = createStackNavigator()
+
   return (
-    <View style={styles.container}>
-      <Text>Hello world</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Registration" component={Registration} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
