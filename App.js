@@ -1,4 +1,4 @@
-import Registration from './src/pages/registration/Registration'
+import Launch from './src/pages/launch/Launch'
 import { Provider as PaperProvider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -12,7 +12,7 @@ export default function App () {
     <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Registration" component={Registration} />
+          <Stack.Screen name="Registration" component={ Launch } />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

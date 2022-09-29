@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, ImageBackground, View } from 'react-native'
 import { Button, Text } from 'react-native-paper'
 
-const Registration = () => {
+const Launch = () => {
   return (
       <View style={styles.container}>
         <ImageBackground source={require('../../../assets/world.png')}
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Registration
+export default Launch
