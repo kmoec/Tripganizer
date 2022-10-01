@@ -2,19 +2,24 @@ import React from 'react'
 import { StyleSheet, ImageBackground, View } from 'react-native'
 import { Button, Text } from 'react-native-paper'
 
-const Launch = () => {
+interface Props {
+  navigation: any
+}
+
+const Launch = ({ navigation }: Props) => {
   return (
       <View style={styles.container}>
         <ImageBackground source={require('../../../assets/world.png')}
           style={styles.backgroundImage} imageStyle={{ opacity: 1 }} resizeMode="contain" >
-            <Text style={styles.registerTitle}>
+            <Text style={styles.title}>
               Tripganizer
             </Text>
             <View style={ styles.buttonContainer }>
               <Button icon="login" mode="contained" style={ styles.signinButtonStyle }>
                 Sign-in
               </Button>
-              <Button icon="account-plus" mode="contained" style={styles.registerButtonStyle}>
+              <Button icon="account-plus" mode="contained" style={styles.registerButtonStyle}
+                onPress={() => navigation.navigate('Registration')}>
                 Create an account
               </Button>
             </View>
@@ -31,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#5C8FA4'
   },
-  registerTitle: {
+  title: {
     color: '#F9F871',
     textAlign: 'center',
     fontFamily: 'Khmer Sangam MN', // not supported on android
