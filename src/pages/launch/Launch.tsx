@@ -15,7 +15,8 @@ const Launch = ({ navigation }: Props) => {
               Tripganizer
             </Text>
             <View style={ styles.buttonContainer }>
-              <Button icon="login" mode="contained" style={ styles.signinButtonStyle }>
+              <Button icon="login" mode="contained" style={ styles.signinButtonStyle }
+                onPress={() => navigation.navigate('Signin')}>
                 Sign-in
               </Button>
               <Button icon="account-plus" mode="contained" style={styles.registerButtonStyle}
