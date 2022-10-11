@@ -6,35 +6,25 @@ interface Props {
   navigation: any
 }
 
-const Signin = ({ navigation }: Props) => {
+const PasswordRecovery = ({ navigation }: Props) => {
   return (
       <View style={styles.mainContainer}>
         <View style={styles.contentContainer}>
           <Text style={styles.title}>
-              Sign-in
+              Recover your password
           </Text>
           <TextInput
-              style={ styles.fieldStyle_2 }
+              style={ styles.fieldStyle_1 }
               label='Email Address'
               mode='outlined'
           />
-          <TextInput
-              style={ styles.fieldStyle_1 }
-              label='Password'
-              mode='outlined'
-          />
           <Button icon="account-plus" mode="contained" style={styles.buttonStyle}>
-            Sign-in
+            Reset Password
           </Button>
           <Button icon="arrow-left-circle" mode="contained"
               style={styles.backButtonStyle}
               onPress={() => navigation.navigate('Launch')}>
             Back
-          </Button>
-          <Button icon="account-plus" mode="text"
-              style={styles.buttonStyle}
-              onPress={() => navigation.navigate('PasswordRecovery')}>
-            Forgot password?
           </Button>
         </View>
       </View>
@@ -66,10 +56,6 @@ const styles = StyleSheet.create({
     width: 260,
     marginTop: 15
   },
-  fieldStyle_2: {
-    width: 260,
-    marginTop: 25
-  },
   buttonStyle: {
     width: 200,
     marginTop: 50
@@ -80,4 +66,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Signin
+export default PasswordRecovery
